@@ -1,21 +1,56 @@
 public class TestClass {
     public static void main(String[] args){
-        System.out.println("Fuck you");
 
-        //целочисленные
-        byte valueByte = 127; //-128..127 (1b)
-        short valueShort = 32767; //--32768..32767 (2b)
-        int valueInt = 2*(10^9); //-2.1*10^9..2.1*10^9 (4b)
-        long valueLong = 3000000000L; //-2^63..2^63 (8b)
 
-        //числа с плавающей точкой
-        float valueFloat = 15.54f;   //число.(7) (4b)
-        double valueDouble = 15.32; //число.(14) (8b)
+        System.out.println(SumDouble());
+        System.out.println(SumBoolean());
+        System.out.println(PositiveNumber(-3));
+        System.out.println(HelloName("Lenin"));
+        System.out.println(LeapYear(81));
+    }
+    public static double SumDouble(){
+        int a = 1;
+        int b = 3;
+        int c = 3;
+        int d = 4;
 
-        // символы
+        double sum = a * (b + (c / d));
+        return sum;
+    }
 
-        char valueChar = 'H';
+    public static boolean SumBoolean() {
+        int a = 19;
+        int b = 2;
+        int sum = a + b;
 
-        System.out.println(valueChar);
+        if (9 < sum && sum <= 20) {
+
+            return true;
+        }
+          return  false;
+    }
+
+    public static String PositiveNumber(int a) {
+
+        if (0 <= a ) {
+
+            return "Positive Number";
+        }
+        return  "Negative Number";
+    }
+    public static String HelloName(String Name) {
+
+        return  "Hello " + Name + "!";
+    }
+
+    public static String LeapYear(int year) {
+        int a = year % 400;
+        int b = year % 4;
+        if (year < 400 && b == 0 && year != 100) {
+            return year + " it is Leap Year";
+        }
+            if (a == 0) {
+                return year + " it is Leap Year";
+        } return year + " it is NO leap Year";
     }
 }
