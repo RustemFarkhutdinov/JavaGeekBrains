@@ -1,0 +1,21 @@
+public class LessonOne {
+    public static void main(String[] args){
+        System.out.println("Fuck you");
+
+        //целочисленные
+        byte valueByte = 127; //-128..127 (1b)
+        short valueShort = 32767; //--32768..32767 (2b)
+        int valueInt = 2*(10^9); //-2.1*10^9..2.1*10^9 (4b)
+        long valueLong = 3000000000L; //-2^63..2^63 (8b)
+
+        //числа с плавающей точкой
+        float valueFloat = 15.54f;   //число.(7) (4b)
+        double valueDouble = 15.32; //число.(14) (8b)
+
+        // символы
+
+        char valueChar = 'H';
+
+        System.out.println(valueChar);
+    }
+}
