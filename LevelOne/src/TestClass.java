@@ -2,25 +2,20 @@ public class TestClass {
     public static void main(String[] args){
 
 
-        System.out.println(SumDouble());
-        System.out.println(SumBoolean());
-        System.out.println(PositiveNumber(-3));
+        //System.out.println(SumDouble(1, 2, 3, 4));
+        //System.out.println(SumBoolean(5, 5));
+        System.out.println(PositiveNumber(0));
         System.out.println(HelloName("Lenin"));
-        System.out.println(LeapYear(81));
+        System.out.println(LeapYear(104));
     }
-    public static double SumDouble(){
-        int a = 1;
-        int b = 3;
-        int c = 3;
-        int d = 4;
+    public static double SumDouble(int a, int b, int c, int d){
 
         double sum = a * (b + (c / d));
         return sum;
     }
 
-    public static boolean SumBoolean() {
-        int a = 19;
-        int b = 2;
+    public static boolean SumBoolean(int a, int b) {
+
         int sum = a + b;
 
         if (9 < sum && sum <= 20) {
@@ -42,7 +37,6 @@ public class TestClass {
 
         return  "Hello " + Name + "!";
     }
-     //TestGithub
     public static String LeapYear(int year) {
         int a = year % 400;
         int b = year % 4;
