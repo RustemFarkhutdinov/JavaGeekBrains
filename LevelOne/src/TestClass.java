@@ -2,15 +2,15 @@ public class TestClass {
     public static void main(String[] args){
 
 
-        //System.out.println(SumDouble(1, 2, 3, 4)); test
+        System.out.println(SumDouble(1, 2, 3, 4));
         //System.out.println(SumBoolean(5, 5));
         System.out.println(PositiveNumber(0));
         System.out.println(HelloName("Lenin"));
-        System.out.println(LeapYear(104));
+        System.out.println(LeapYear(4));
     }
     public static double SumDouble(int a, int b, int c, int d){
 
-        double sum = a * (b + (c / d));
+        double sum = a * (b + ((float)c / d));
         return sum;
     }
 
