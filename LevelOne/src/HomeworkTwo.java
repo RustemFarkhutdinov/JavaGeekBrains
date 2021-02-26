@@ -17,7 +17,7 @@ public class HomeworkTwo {
        System.out.println("Maximum: " + findMax(mas)); // Task 4
        System.out.println("Minimum: " + findMin(mas)); // Task 4
 
-        int side = 10;
+        int side = 4;
         int[][] dArr = new int[side][side];
         crossFill(dArr);
         for ( int i = 0; i < dArr.length; i++){
@@ -65,7 +65,7 @@ public class HomeworkTwo {
 
     public static int findMax(int[] array) {
         Arrays.sort(array);
-        return  array[array.length -1];
+        return  array[array.length-1];
     }
     public static int findMin(int[] array) {
         int min = array[0];
