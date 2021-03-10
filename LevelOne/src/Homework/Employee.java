@@ -41,6 +41,7 @@ public class Employee {
     }
 
     public void setPosition(String Position){
+
         this.position = Position;
     }
 
@@ -53,6 +54,7 @@ public class Employee {
     }
 
     public void setAge(int Age){
+
         this.age = Age;
     }
     public String task4() {
