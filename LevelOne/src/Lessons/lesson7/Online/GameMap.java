@@ -11,6 +11,7 @@ import java.util.Random;
 public class GameMap extends JPanel {
     public static final int GM_HVH = 0;
     public static final int GM_HVA = 1;
+    public static final int GM_AIvsAI = -1;
 
     private static final int HUMAN_DOT = 1;
     private static final int AI_DOT = 2;
@@ -43,7 +44,7 @@ public class GameMap extends JPanel {
 
 
     GameMap() {
-        setBackground(Color.BLACK);
+        setBackground(Color.GREEN);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -144,7 +145,7 @@ public class GameMap extends JPanel {
                     continue;
                 }
                 if (map[y][x] == HUMAN_DOT) {
-                    g.setColor(new Color(0, 255, 0));
+                    g.setColor(new Color(0, 4, 0));
                     g.fillOval(x * cellWidth + OVAL_PADDING, y * cellHeight + OVAL_PADDING, cellWidth - OVAL_PADDING * 2, cellHeight - OVAL_PADDING * 2);
                 } else if (map[y][x] == AI_DOT) {
                     g.setColor(new Color(255, 0, 0));
@@ -227,7 +228,6 @@ public class GameMap extends JPanel {
         return false;
     }
 
-    // проверка на победу
     private boolean checkWin(int player) {
         for (int i = 0; i < mapSizeX; i++) {
             for (int j = 0; j < mapSizeY; j++) {

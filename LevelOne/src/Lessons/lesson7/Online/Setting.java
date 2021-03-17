@@ -26,6 +26,7 @@ class Settings extends JFrame {
 
     private JRadioButton humanVsHuman;
     private JRadioButton humanVsAi;
+    private JRadioButton AIvsAI;
     private JSlider sliderSetSizeMap;
     private JSlider sliderSetWinLength;
     private JButton btnStart;
@@ -33,7 +34,7 @@ class Settings extends JFrame {
     Settings(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         Rectangle mainWindowBounds = mainWindow.getBounds();
-        setBackground(Color.BLUE);
+        setBackground(Color.gray);
 
         int posX = (int) mainWindowBounds.getCenterX() - WIN_WIDTH / 2;
         int posY = (int) mainWindowBounds.getCenterY() - WIN_HEIGHT / 2;
@@ -54,14 +55,18 @@ class Settings extends JFrame {
         add(new JLabel("Choose your game mode"));
         humanVsHuman = new JRadioButton("Human vs. Human", true);
         humanVsAi = new JRadioButton("Human vs. Ai");
+      AIvsAI = new JRadioButton("AI vs. AI");
 
         ButtonGroup gameModeGroup = new ButtonGroup();
         gameModeGroup.add(humanVsHuman);
         gameModeGroup.add(humanVsAi);
+      gameModeGroup.add(AIvsAI);
 
         add(humanVsHuman);
         add(humanVsAi);
+       add(AIvsAI);
     }
+
 
     private void setSizeMapControl() {
         JLabel lbMapSize = new JLabel(MAP_SIZE_PREFIX + MIN_MAP_SIZE);
@@ -112,14 +117,17 @@ class Settings extends JFrame {
             gameMode = GameMap.GM_HVH;
         } else if (humanVsAi.isSelected()) {
             gameMode = GameMap.GM_HVA;
-        } else {
-            throw new RuntimeException("Invalid choose game mode");
-        }
+        } else if (AIvsAI.isSelected()) {
+                gameMode = GameMap.GM_AIvsAI;
+            } else {
+                throw new RuntimeException("Invalid choose game mode");
+            }
 
-        int mapSize = sliderSetSizeMap.getValue();
-        int winLn = sliderSetWinLength.getValue();
 
-        mainWindow.getParamsFromSettingAndStartGame(mapSize, mapSize, winLn, gameMode);
+            int mapSize = sliderSetSizeMap.getValue();
+            int winLn = sliderSetWinLength.getValue();
+
+            mainWindow.getParamsFromSettingAndStartGame(mapSize, mapSize, winLn, gameMode);
 
         setVisible(false);
     }
