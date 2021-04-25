@@ -1,54 +1,60 @@
 package Lessons.lesson7.Online;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainWindows extends JFrame {
-    private static final int winWIDTH = 500;
-    private static final int winHEIGHT = 500;
-    private static final int winPosX = 600;
-    private static final int winPosY = 250;
-    private Setting setting;
+class MainWindow extends JFrame {
+
+    private static final int WIN_WIDTH = 507;
+    private static final int WIN_HEIGHT = 550;
+    private static final int WIN_POS_X = 650;
+    private static final int WIN_POS_Y = 250;
+
+    private Settings settings;
     private GameMap gameMap;
 
-    MainWindows(){
+    MainWindow() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(winWIDTH, winHEIGHT);
-        setLocation(winPosX, winPosY);
-        setTitle("Game X/O");
+        setSize(WIN_WIDTH, WIN_HEIGHT);
+        setLocation(WIN_POS_X, WIN_POS_Y);
+        setTitle("Game X-O");
         setResizable(false);
 
-        setting = new Setting(this);
+        settings = new Settings(this);
         gameMap = new GameMap();
 
-        JButton buttonStartGame = new JButton("Start New Game");
-        buttonStartGame.addActionListener(new AbstractAction() {
+        JButton btnStartGame = new JButton("Start New Game");
+        btnStartGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setting.setVisible(true);
+                settings.setVisible(true);
             }
         });
 
-        JButton buttonExitGame = new JButton("Exit Game");
-        buttonExitGame.addActionListener(new AbstractAction() {
+        JButton btnExitGame = new JButton("Exit Game");
+        btnExitGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               System.exit(0);
+                System.exit(0);
             }
         });
 
-       JPanel panelForButton = new JPanel();
-       panelForButton.setLayout(new GridLayout(1, 2));
-       panelForButton.add(buttonStartGame);
-       panelForButton.add(buttonExitGame);
-
+        JPanel panelForButton = new JPanel();
+        panelForButton.setLayout(new GridLayout(1, 2));
+        panelForButton.add(btnStartGame);
+        panelForButton.add(btnExitGame);
 
         add(panelForButton, BorderLayout.SOUTH);
         add(gameMap);
+
         setVisible(true);
     }
-    void getParamsFromSettingAndStartGame(int mapSizeX, int mapSizeY, int winLength, int madeGame) {
-        gameMap.startGameWithParams(mapSizeX, mapSizeY, winLength, madeGame);
+
+    void getParamsFromSettingAndStartGame(int mapSizeX, int mapSizeY, int winLength, int modeGame) {
+        gameMap.startGameWithParams(mapSizeX, mapSizeY, winLength, modeGame);
     }
+
 }

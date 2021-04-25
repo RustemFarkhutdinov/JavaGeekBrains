@@ -5,125 +5,131 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Setting extends JFrame {
-    private static final int winWIDTH = 350;
-    private static final int winHEIGHT = 250;
+class Settings extends JFrame {
 
-    private final int MinMapSize = 3;
-    private final int MaxMapSize = 10;
-    private final int MinWinLength = 3;
-    private final String MapSizePrefix = "Map size is: ";
-    private final String WinLenPrefix = "Win win len is: ";
-//    private static final int winPosX = 675;
-//    private static final int winPosY = 350;
+    public static int gameMode;
+
+    private static final int WIN_WIDTH = 350;
+    private static final int WIN_HEIGHT = 250;
+
+    private final int MIN_WIN_LENGTH = 3;
+    private final int MIN_MAP_SIZE = 3;
+    private final int MAX_MAP_SIZE = 10;
+
+    private final String MAP_SIZE_PREFIX = "Map size is: ";
+    private final String WIN_LEN_PREFIX = "Win length is: ";
 
 
-    private MainWindows mainWindows;
+    private MainWindow mainWindow;
 
     private JRadioButton humanVsHuman;
-    private JRadioButton humanVsAI;
+    private JRadioButton humanVsAi;
     private JRadioButton AIvsAI;
     private JSlider sliderSetSizeMap;
     private JSlider sliderSetWinLength;
-    private JButton buttonStart;
+    private JButton btnStart;
 
-    Setting(MainWindows mainWindows){
-        this.mainWindows = mainWindows;
-        Rectangle mainWindowBounds = mainWindows.getBounds();
+    Settings(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
+        Rectangle mainWindowBounds = mainWindow.getBounds();
+        setBackground(Color.gray);
 
-        int posX = (int) mainWindowBounds.getCenterX() - winWIDTH / 2;
-        int posY = (int) mainWindowBounds.getCenterY() - winHEIGHT / 2;
+        int posX = (int) mainWindowBounds.getCenterX() - WIN_WIDTH / 2;
+        int posY = (int) mainWindowBounds.getCenterY() - WIN_HEIGHT / 2;
 
         setLocation(posX, posY);
-        setSize(winWIDTH, winHEIGHT);
- //       setLocation(winPosX, winPosY);
+        setSize(WIN_WIDTH, WIN_HEIGHT);
         setTitle("Settings");
         setResizable(false);
         setLayout(new GridLayout(10, 1));
 
         setGameModeControl();
         setSizeMapControl();
-        finishSetting();
+        finishSettings();
 
     }
 
-    private void setGameModeControl(){
-    add(new JLabel("Choose your game mode"));
-    humanVsHuman = new JRadioButton("Human vs. Human", true);
-    humanVsAI = new JRadioButton("Human vs. AI");
-    AIvsAI = new JRadioButton("AI vs. AI");
+    private void setGameModeControl() {
+        add(new JLabel("Choose your game mode"));
+        humanVsHuman = new JRadioButton("Human vs. Human", true);
+        humanVsAi = new JRadioButton("Human vs. Ai");
+      AIvsAI = new JRadioButton("AI vs. AI");
 
-    ButtonGroup gameModeGroup = new ButtonGroup();
-    gameModeGroup.add(humanVsAI);
-    gameModeGroup.add(humanVsHuman);
-    gameModeGroup.add(AIvsAI);
+        ButtonGroup gameModeGroup = new ButtonGroup();
+        gameModeGroup.add(humanVsHuman);
+        gameModeGroup.add(humanVsAi);
+      gameModeGroup.add(AIvsAI);
 
-    add(humanVsHuman);
-    add(humanVsAI);
-    add(AIvsAI);
+        add(humanVsHuman);
+        add(humanVsAi);
+       add(AIvsAI);
     }
 
-    private void setSizeMapControl(){
-        JLabel LbMapSize = new JLabel(MapSizePrefix + MinMapSize);
-        JLabel LbWinLen = new JLabel(WinLenPrefix + MinWinLength);
 
-        sliderSetSizeMap = new JSlider(MinMapSize, MaxMapSize, MinMapSize);
+    private void setSizeMapControl() {
+        JLabel lbMapSize = new JLabel(MAP_SIZE_PREFIX + MIN_MAP_SIZE);
+        JLabel lbWinLen = new JLabel(WIN_LEN_PREFIX + MIN_WIN_LENGTH);
+
+        sliderSetSizeMap = new JSlider(MIN_MAP_SIZE, MAX_MAP_SIZE, MIN_MAP_SIZE);
         sliderSetSizeMap.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-            int currentMapSize = sliderSetSizeMap.getValue();
-            LbMapSize.setText(MapSizePrefix + currentMapSize);
-            sliderSetWinLength.setMaximum(currentMapSize);
+                int currentMapSize = sliderSetSizeMap.getValue();
+                lbMapSize.setText(MAP_SIZE_PREFIX + currentMapSize);
+                sliderSetWinLength.setMaximum(currentMapSize);
             }
         });
 
-
-        sliderSetWinLength = new JSlider(MinWinLength, MaxMapSize, MinMapSize );
+        sliderSetWinLength = new JSlider(MIN_WIN_LENGTH, MIN_MAP_SIZE, MIN_MAP_SIZE);
         sliderSetWinLength.addChangeListener(new ChangeListener() {
-         @Override
-         public void stateChanged(ChangeEvent e) {
-             LbWinLen.setText(WinLenPrefix + sliderSetWinLength.getValue());
-        }
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                lbWinLen.setText(WIN_LEN_PREFIX + sliderSetWinLength.getValue());
+            }
         });
 
-
-        add(new Label("Choose Map size"));
-        add(LbMapSize);
+        add(new JLabel("Choose map size"));
+        add(lbMapSize);
         add(sliderSetSizeMap);
-        add(LbWinLen);
+        add(lbWinLen);
         add(sliderSetWinLength);
     }
 
-    private void finishSetting(){
-    buttonStart = new JButton("Start Game");
-    buttonStart.addActionListener(new AbstractAction() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            startNextGame();
-        }
-    });
-    add(buttonStart);
+    private void finishSettings() {
+        btnStart = new JButton("Start Game");
+        btnStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startNextGame();
+            }
+        });
+        add(btnStart);
+
     }
 
-    private void startNextGame(){
+
+    private void startNextGame() {
         int gameMode;
 
-        if(humanVsHuman.isSelected()){
-            gameMode = GameMap.GM_HvsH;
-        } else if (humanVsAI.isSelected()){
-            gameMode = GameMap.GM_HvsAI;
-        } else if (AIvsAI.isSelected()){
-            gameMode = GameMap.GM_AIvsAI;
-        } else {
-            throw new RuntimeException("Invalid choose game mode");
-        }
+        if (humanVsHuman.isSelected()) {
+            gameMode = GameMap.GM_HVH;
+        } else if (humanVsAi.isSelected()) {
+            gameMode = GameMap.GM_HVA;
+        } else if (AIvsAI.isSelected()) {
+                gameMode = GameMap.GM_AIvsAI;
+            } else {
+                throw new RuntimeException("Invalid choose game mode");
+            }
 
-        int mapSize = sliderSetSizeMap.getValue();
-        int winLen = sliderSetWinLength.getValue();
 
-    mainWindows.getParamsFromSettingAndStartGame(mapSize, mapSize, winLen, gameMode);
+            int mapSize = sliderSetSizeMap.getValue();
+            int winLn = sliderSetWinLength.getValue();
 
-    setVisible(false);
+            mainWindow.getParamsFromSettingAndStartGame(mapSize, mapSize, winLn, gameMode);
+
+        setVisible(false);
     }
+
 }
