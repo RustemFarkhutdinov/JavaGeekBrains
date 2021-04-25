@@ -19,9 +19,6 @@ public class Track implements JumpWall {
         return length;
     }
 
-    @Override
-    public int getHeight() {
-        return 0;
-    }
+
 
 }

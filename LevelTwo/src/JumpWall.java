@@ -3,7 +3,7 @@ public interface JumpWall {
     String getName();
     int maxJumpe();
     int getLength();
-    int getHeight();
+  //  int getHeight();
 
 
     default boolean jump(int needJumpe) {

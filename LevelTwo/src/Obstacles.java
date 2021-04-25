@@ -20,8 +20,4 @@ public class Obstacles implements JumpWall{
         return height;
     }
 
-    @Override
-    public int getHeight() {
-        return 0;
-    }
 }

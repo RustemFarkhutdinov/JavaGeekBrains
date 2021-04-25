@@ -27,10 +27,7 @@ public class Men implements RunningTack, JumpWall
         return 0;
     }
 
-    @Override
-    public int getHeight() {
-        return 0;
-    }
+
 
     @Override
     public String getName() {
