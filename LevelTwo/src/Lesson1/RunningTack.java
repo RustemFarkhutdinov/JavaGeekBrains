@@ -1,3 +1,5 @@
+package Lesson1;
+
 public interface RunningTack {
 
    String getName();

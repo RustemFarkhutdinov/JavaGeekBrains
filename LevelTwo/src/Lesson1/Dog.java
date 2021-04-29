@@ -1,16 +1,16 @@
-public class Men implements RunningTack, JumpWall
-{
+package Lesson1;
+
+public class Dog implements RunningTack, JumpWall {
 
     private final int maxDistance;
     private final String name;
     private final int maxJumpe;
 
-    public Men(String name, int maxDistance, int maxJumpe) {
+    public Dog(String name, int maxDistance, int maxJumpe) {
         this.name = name;
         this.maxJumpe = maxJumpe;
         this.maxDistance = maxDistance;
     }
-
 
     @Override
     public int maxDistance() {
@@ -33,4 +33,5 @@ public class Men implements RunningTack, JumpWall
     public String getName() {
         return name;
     }
+
 }
